@@ -1,6 +1,9 @@
 #build dir
 build*/
 
+#translation files
+*.ts
+
 # C++ objects and libs
 *.slo
 *.lo
