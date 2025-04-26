@@ -33,21 +33,6 @@ QSqlDatabase InitializeDatabase()
     return db;
 }
 
-/*
-void InsertTitle(const QString &name, int grade, const QString &desc) {
-    QSqlQuery query;
-    query.prepare("INSERT INTO library (name, grade, desc) VALUES (:name, :value, :desc)");
-    query.bindValue(":name", name);
-    query.bindValue(":value", grade);
-    query.bindValue(":description", desc);
-
-    if (!query.exec()) {
-        qDebug() << "Error: Failed to insert new data:" << query.lastError().text();
-    }
-    return;
-}
-*/
-
 QSqlQueryModel* SetupSelectModel(MainWindow *w, QTableView *tableView)
 {
     QSqlQueryModel  *model = new QSqlQueryModel(w);

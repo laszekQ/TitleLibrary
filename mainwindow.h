@@ -25,6 +25,8 @@ public:
 private:
     Ui::MainWindow *ui;
     QSqlQueryModel *model;
+    bool order = 1; // 0 - DESC, 1 - ASC (see mainwindow.cpp)
+    int prev_selection = 0;
     void AddTitle();
     void RemoveTitle();
     void SendAddQuery();

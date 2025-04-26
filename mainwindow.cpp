@@ -82,14 +82,8 @@ void MainWindow::RemoveTitle()
         query.prepare("DELETE FROM library WHERE id = :id");
 
         QString id = ui->idLabel->text();
-        //QVariant grade = this->model->data(this->model->index(row, 0));
-        //QVariant desc = this->model->data(this->model->index(row, 0));
-        //QVariant name = model->data(model->index(row, 0));
 
         query.bindValue(":id", id);
-        //query.bindValue(":grade", grade);
-        //query.bindValue(":description", desc);
-        //query.bindValue(":img", img);
 
         if (!query.exec())
         {
@@ -227,16 +221,6 @@ void MainWindow::OnRowSelection()
 
 void MainWindow::OnHeaderSelection(int column)
 {
-    /*
-    QItemSelectionModel *selected = ui->titlesTableView->selectionModel();
-    int column = -1;
-
-    if(selected->hasSelection() && selected->selectedColumns().count() == 1)
-        column = selected->selectedColumns().first().column();
-    else
-        return;
-    */
-
     QString columnName = model->headerData(column, Qt::Horizontal).toString();
 
     QString query;
@@ -245,7 +229,14 @@ void MainWindow::OnHeaderSelection(int column)
     columnName = columnName.toLower();
     columnName = (column == 2) ? "desc" : columnName;
 
-    query += columnName + " DESC";
+    if(prev_selection == column)
+        order = !order;
+    else
+        order = 1;
+    prev_selection = column;
+    QString asc_desc = order ? "ASC" : "DESC";
+
+    query += columnName + " " + asc_desc;
 
     model->setQuery(query);
 
@@ -256,7 +247,7 @@ void MainWindow::CallOpenFile()
 {
     QString fileName = QFileDialog::getOpenFileName(nullptr,
             "Choose title cover",
-            "C:/",
+            "",
             "Images (*.png *.jpg);;All files (*)");
 
     if (!fileName.isEmpty())
