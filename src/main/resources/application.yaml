@@ -1,3 +1,16 @@
 spring:
   application:
     name: TitleLibrary
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+  sql:
+    init:
+      username: ${DB_USERNAME}
+      password: ${DB_PASSWORD}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://${DB_PATH}
