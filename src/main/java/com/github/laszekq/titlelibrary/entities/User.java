@@ -21,7 +21,7 @@ public class User {
     @Nonnull
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Entry> entries = new ArrayList<>();
 
     public void setId(Long id) {

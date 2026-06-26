@@ -14,7 +14,7 @@ public class Type {
     @Nonnull
     private String name;
 
-    @OneToMany(mappedBy = "type")
+    @OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
     private List<Title> titles;
 
 

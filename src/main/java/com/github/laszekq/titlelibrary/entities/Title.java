@@ -12,19 +12,20 @@ public class Title {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Nonnull
-    private String title;
+    @OneToMany(mappedBy = "title", fetch = FetchType.LAZY)
+    private List<Name> names;
+
     @Nonnull
     private String description;
 
     @Nonnull
     private Integer year;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")
     private Type type;
 
-    @OneToMany(mappedBy = "title")
+    @OneToMany(mappedBy = "title",  fetch = FetchType.LAZY)
     private List<Entry> entries;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -36,14 +37,6 @@ public class Title {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public @NonNull String getTitle() {
-        return title;
-    }
-
-    public void setTitle(@NonNull String title) {
-        this.title = title;
     }
 
     public @NonNull String getDescription() {

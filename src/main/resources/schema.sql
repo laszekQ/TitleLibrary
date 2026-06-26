@@ -18,13 +18,24 @@ CREATE TABLE "user" (
 
 CREATE TABLE TITLE (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name TEXT NOT NULL,
     year INT NOT NULL,
     type_id INT NOT NULL,
     CONSTRAINT fk_type FOREIGN KEY (type_id)
                    REFERENCES TYPE(id)
                    ON DELETE RESTRICT
 );
+
+CREATE TABLE NAME (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    title_id INT NOT NULL,
+    CONSTRAINT fk_title FOREIGN KEY (title_id)
+                  REFERENCES TITLE(id)
+                  ON DELETE RESTRICT,
+    ts TSVECTOR GENERATED ALWAYS AS (to_tsvector('simple', name)) STORED
+);
+
+CREATE INDEX name_ts_idx ON name USING GIN (ts);
 
 CREATE TABLE TAG (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
