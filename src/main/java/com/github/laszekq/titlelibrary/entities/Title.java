@@ -10,7 +10,7 @@ import java.util.List;
 public class Title {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @OneToMany(mappedBy = "title", fetch = FetchType.LAZY)
     private List<Name> names;
@@ -29,13 +29,15 @@ public class Title {
     private List<Entry> entries;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<Tag> tags;
+    @JoinTable(name = "tag_title",
+            joinColumns = @JoinColumn(name = "title_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))    private List<Tag> tags;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

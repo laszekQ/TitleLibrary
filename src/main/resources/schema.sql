@@ -13,11 +13,16 @@ CREATE TABLE "user" (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     login TEXT NOT NULL,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+    role_id INT,
+    CONSTRAINT fk_role FOREIGN KEY (role_id)
+                    REFERENCES TYPE(id)
+                    ON DELETE RESTRICT
 );
 
 CREATE TABLE TITLE (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    description TEXT,
     year INT NOT NULL,
     type_id INT NOT NULL,
     CONSTRAINT fk_type FOREIGN KEY (type_id)
@@ -69,6 +74,11 @@ CREATE TABLE ENTRY(
                   REFERENCES STATUS(id)
                   ON DELETE RESTRICT,
     date DATE,
-    rating SMALLINT
-)
+    rating INT
+);
+
+CREATE TABLE ROLE(
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT
+);
 

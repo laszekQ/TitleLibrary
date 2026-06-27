@@ -10,18 +10,18 @@ import java.util.List;
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Nonnull
     private String name;
 
     @OneToMany(mappedBy = "status", fetch = FetchType.LAZY)
     private List<Entry> entries;
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

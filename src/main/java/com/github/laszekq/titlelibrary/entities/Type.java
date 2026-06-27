@@ -9,7 +9,7 @@ import java.util.List;
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Nonnull
     private String name;
@@ -18,11 +18,11 @@ public class Type {
     private List<Title> titles;
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(@Nonnull Long id) {
+    public void setId(@Nonnull Integer id) {
         this.id = id;
     }
 
