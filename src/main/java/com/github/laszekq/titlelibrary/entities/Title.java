@@ -15,6 +15,8 @@ public class Title {
     @OneToMany(mappedBy = "title", fetch = FetchType.LAZY)
     private List<Name> names;
 
+    private String poster;
+
     @Nonnull
     private String description;
 
@@ -39,6 +41,14 @@ public class Title {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     public @NonNull String getDescription() {

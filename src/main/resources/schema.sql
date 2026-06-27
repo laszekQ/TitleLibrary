@@ -27,6 +27,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE TITLE (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    poster TEXT,
     description TEXT,
     year INT NOT NULL,
     type_id INT NOT NULL,
