@@ -1,8 +1,19 @@
 package com.github.laszekq.titlelibrary.dtos;
 
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
+
 public class UserDTO {
+    @NotBlank
+    @Length(max = 32)
     private String name;
+
+    @NotBlank
+    @Length(min = 8, max = 32)
     private String login;
+
+    @NotBlank
+    @Length(min = 8, max = 32)
     private String password;
 
     public String getName() {

@@ -70,4 +70,12 @@ public class User {
     public void setEntries(List<Entry> entries) {
         this.entries = entries;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
