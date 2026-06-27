@@ -13,10 +13,10 @@ import java.util.Optional;
 public interface TitleRepository extends CrudRepository<Title, Long> {
     List<Title> findAllByType(Type type);
 
-    @NativeQuery(
+    @Query( nativeQuery = true, value =
             "SELECT t.id, t.year, t.type_id " +
             "FROM TITLE t " +
             "JOIN NAME n " +
-            "ON n.title_id == t.id WHERE ts @@ to_tsquery('simple', :name)")
+            "ON n.title_id = t.id WHERE ts @@ to_tsquery('simple', :name)")
     List<Title> findAllByNameLike(@Param(":name") String name);
 }
