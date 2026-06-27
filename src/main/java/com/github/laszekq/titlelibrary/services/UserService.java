@@ -8,6 +8,7 @@ import com.github.laszekq.titlelibrary.repositories.RoleRepository;
 import com.github.laszekq.titlelibrary.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,11 +38,6 @@ public class UserService {
         return userRepository.findByLogin(login);
     }
 
-    public boolean tryLogin(String login, String password) {
-        // TODO: implement
-        return false;
-    }
-
     public void register(UserDTO user) {
         if (userRepository.existsByLogin(user.getLogin()))
             throw new IllegalStateException("Such login already exists");
@@ -63,5 +59,10 @@ public class UserService {
         if (user.isEmpty())
             return null;
         return user.get().getEntries();
+    }
+
+    @Transactional
+    public void removeUser(String login) {
+        userRepository.deleteByLogin(login);
     }
 }

@@ -10,4 +10,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findByLogin(String login);
     Optional<User> findById(Integer id);
     boolean existsByLogin(String login);
+
+    void deleteByLogin(String login);
 }

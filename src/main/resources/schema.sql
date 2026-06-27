@@ -9,6 +9,11 @@ CREATE TABLE STATUS (
     name TEXT NOT NULL
 );
 
+CREATE TABLE ROLE(
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT
+);
+
 CREATE TABLE "user" (
     id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
@@ -16,7 +21,7 @@ CREATE TABLE "user" (
     password TEXT NOT NULL,
     role_id INT,
     CONSTRAINT fk_role FOREIGN KEY (role_id)
-                    REFERENCES TYPE(id)
+                    REFERENCES ROLE(id)
                     ON DELETE RESTRICT
 );
 
@@ -75,10 +80,5 @@ CREATE TABLE ENTRY(
                   ON DELETE RESTRICT,
     date DATE,
     rating INT
-);
-
-CREATE TABLE ROLE(
-    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name TEXT
 );
 

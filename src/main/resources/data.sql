@@ -1,0 +1,3 @@
+INSERT INTO ROLE (name) VALUES ('User');
+INSERT INTO ROLE (name) VALUES ('Editor');
+INSERT INTO ROLE (name) VALUES ('Admin');
