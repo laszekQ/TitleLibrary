@@ -32,6 +32,6 @@ public class TitleService {
     }
 
     public List<Title> getByName(String name) {
-        return titleRepository.findAllByNameLike(name);
+        return titleRepository.findAllByNameLike("'" + name + "'");
     }
 }
